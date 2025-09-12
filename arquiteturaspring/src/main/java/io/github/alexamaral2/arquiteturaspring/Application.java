@@ -18,6 +18,7 @@ public class Application {
 
 		builder.bannerMode(Banner.Mode.OFF);
 		builder.profiles("producao", "homologacao");
+        builder.lazyInitialization(true);
 
 		builder.run(args);
 

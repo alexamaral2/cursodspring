@@ -5,11 +5,13 @@ import io.github.alexamaral2.arquiteturaspring.montadora.TipoMotor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class MontadoraConfiguration {
 
     @Bean(name = "motorAspirado")
+    @Scope("singleton")
     public Motor motorAspirado() {
         var motor = new Motor();
         motor.setCavalos(120);
