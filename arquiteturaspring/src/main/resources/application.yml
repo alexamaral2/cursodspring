@@ -9,4 +9,5 @@ app:
   montadora:
     motor-padrao: 130
   config:
-    variavel: X
+    variavel: valor da variavel X
+    valor1: 500
