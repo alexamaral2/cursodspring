@@ -6,5 +6,7 @@ spring:
   main:
     lazy-initialization: false
 app:
+  montadora:
+    motor-padrao: 130
   config:
     variavel: X
