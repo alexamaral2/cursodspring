@@ -5,13 +5,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoService {
 
-    private TodoRepository todoRepository;
+    private TodoRepository repository;
 
     public TodoService(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+        this.repository = todoRepository;
     }
 
-    public TodoEntity salvar(TodoEntity todoEntity){
-        return todoRepository.save(todoEntity);
+    public TodoEntity salvar(TodoEntity todoEntity) {
+        return repository.save(todoEntity);
+    }
+
+    public void atualizarStatus(TodoEntity todo) {
+        repository.save(todo);
+    }
+
+    public TodoEntity buscarPorId(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 }
