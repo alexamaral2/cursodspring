@@ -1,7 +1,7 @@
 package br.com.alexjr.libraryapi.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,6 +10,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "livro")
 @Data
+@ToString(exclude = "autor")
 public class Livro {
 
     @Id
@@ -23,19 +24,20 @@ public class Livro {
     @Column(name = "titulo", length = 150, nullable = false)
     private String titulo;
 
-    @Column(name="data_publicacao")
+    @Column(name = "data_publicacao")
     private LocalDate dataPublicacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="genero", length = 30, nullable = false)
+    @Column(name = "genero", length = 30, nullable = false)
     private GeneroLivro genero;
 
-    @Column(name="preco", precision = 18, scale = 2)
+    @Column(name = "preco", precision = 18, scale = 2)
     private BigDecimal preco;
 
     @ManyToOne(
-            //cascade = CascadeType.ALL
-            fetch = FetchType.LAZY)
+//            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "id_autor")
     private Autor autor;
 }
