@@ -128,7 +128,6 @@ public class LivroRepositoryTest {
         lista.forEach(System.out::println);
     }
 
-
     @Test
     void pesquisaPorTituloEPrecoTest(){
         var preco = BigDecimal.valueOf(204.00);
@@ -136,5 +135,51 @@ public class LivroRepositoryTest {
 
         List<Livro> lista = livroRepository.findByTituloAndPreco(tituloPesquisa, preco);
         lista.forEach(System.out::println);
+    }
+
+    @Test
+    void listarLivrosComQueryJPQL(){
+        var resultado = livroRepository.listarTodosOrdenadoPorTituloAndPreco();
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarAutoresDosLivros(){
+        var resultado = livroRepository.listarAutoresDosLivros();
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarTitulosNaoRepetidosDosLivros(){
+        var resultado = livroRepository.listarNomesDiferentesLivros();
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarGenerosDeLivrosAutoresBrasileiros(){
+        var resultado = livroRepository.listarGenerosAutoresBrasileiros();
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarPorGeneroQueryParamTest(){
+        var resultado = livroRepository.findByGenero(GeneroLivro.MISTERIO, "preco");
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void listarPorGeneroPositionalParamTest(){
+        var resultado = livroRepository.findByGeneroPositionalParameters("preco", GeneroLivro.MISTERIO);
+        resultado.forEach(System.out::println);
+    }
+
+    @Test
+    void deletePorGeneroTest(){
+        livroRepository.deleteByGenero(GeneroLivro.CIENCIA);
+    }
+
+    @Test
+    void updateDataPublicacaoTest(){
+        livroRepository.updateDataPublicacao(LocalDate.of(2000,1,1));
     }
 }
